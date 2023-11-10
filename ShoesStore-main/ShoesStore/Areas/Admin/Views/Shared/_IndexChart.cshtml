@@ -1,0 +1,18 @@
+﻿@using ShoesStore.Models.ProcedureModels
+@model List<ProcTongTienBanHangThang>
+
+
+<div class="card-body" id="indexChart">
+    <canvas id="myBarChart" width="100%" height="40"></canvas>
+    <div>
+        @foreach (var item in Model)
+        {
+            @item.Value.ToString("g29")
+            <span>$</span>
+        }
+    </div>
+</div>
+
+
+
+

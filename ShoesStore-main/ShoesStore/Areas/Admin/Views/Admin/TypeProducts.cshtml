@@ -1,0 +1,16 @@
+﻿@model IEnumerable<ShoesStore.Models.LoaiGiay>
+@{
+    ViewData["Title"] = "TypeProducts";
+    Layout = "_LayoutTypeProductsAdmin";
+}
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.MaLoai)</td>
+        <td>@Html.DisplayFor(modelItem => item.TenLoai)</td>
+        <td>
+            <a asp-action="Edit" asp-controller="LoaiGiays" asp-route-id="@item.MaLoai">Edit</a> |
+            <a asp-action="Delete" asp-controller="LoaiGiays" asp-route-id="@item.MaLoai">Delete</a>
+        </td>
+    </tr>
+}

@@ -1,0 +1,27 @@
+﻿@model IEnumerable<ShoesStore.Models.Giay>
+@{
+    ViewData["Title"] = "Products";
+    Layout = "_LayoutProductsAdmin";
+}
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.MaGiay)</td>
+        <td>@Html.DisplayFor(modelItem => item.MaLoai)</td>
+        <td>@Html.DisplayFor(modelItem => item.TenGiay)</td>      
+        <td>@Html.DisplayFor(modelItem => item.KichCo)</td>
+        <td>@Html.DisplayFor(modelItem => item.MauSac)</td>
+        <td>@Html.DisplayFor(modelItem => item.SoLuong)</td>
+        <td>@Html.DisplayFor(modelItem => item.GiaNhap)</td>
+        <td>@Html.DisplayFor(modelItem => item.GiaGoc)</td>
+        <td>@Html.DisplayFor(modelItem => item.GiaBan)</td>
+        <td>@Html.DisplayFor(modelItem => item.PhanTramGiam)</td>
+        <td>@Html.DisplayFor(modelItem => item.TinhTrang)</td>
+        <td>@Html.DisplayFor(modelItem => item.DanhGia)</td>
+        <td><img style="width: 100px; height: 100px" src="@Url.Content("../images/" + item.AnhDaiDien)" /></td>
+        <td>
+            <a asp-controller="Giays" asp-action="Edit" asp-route-id="@item.MaGiay">Edit</a> |
+            <a asp-controller="Giays" asp-action="Delete" asp-route-id="@item.MaGiay">Delete</a>
+        </td>
+    </tr>
+}

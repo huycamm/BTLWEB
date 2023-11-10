@@ -1,0 +1,27 @@
+﻿@model IEnumerable<ShoesStore.Models.NhanVien>
+ 
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_LayoutIndexAdmin";
+}
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td class="first">@Html.DisplayFor(modelItem => item.MaNv)</td>
+        <td>@Html.DisplayFor(modelItem => item.TaiKhoan)</td>
+        <td>@Html.DisplayFor(modelItem => item.GioiTinh)</td>
+        <td>@Html.DisplayFor(modelItem => item.HoTenNv)</td>
+        <td>@Html.DisplayFor(modelItem => item.NgaySinh)</td>
+        <td>@Html.DisplayFor(modelItem => item.SoDienThoai)</td>
+        <td>@Html.DisplayFor(modelItem => item.ChucVu)</td>
+        <td>@Html.DisplayFor(modelItem => item.Luong)</td>
+        <td>@Html.DisplayFor(modelItem => item.TinhTrangCongViec)</td>
+        <td><img style="width: 100px; height: 100px" src="@Url.Content("../images/" + item.AnhDaiDien)" /></td>
+        <td>
+            <a asp-action="Edit" asp-controller="NhanViens" asp-route-id="@item.MaNv">Edit</a> |
+            <a asp-action="Delete" asp-controller="NhanViens" asp-route-id="@item.MaNv">Delete</a>
+        </td>
+    </tr>
+}

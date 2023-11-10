@@ -1,0 +1,25 @@
+﻿@model IEnumerable<ShoesStore.Models.HoaDonBan>
+@{
+    ViewData["Title"] = "HDB";
+    Layout = "_LayoutHDBAdmin";
+}
+@foreach (var item in Model)
+{
+    <tr>
+        <td class="first">@Html.DisplayFor(modelItem => item.MaHdb)</td>
+        <td>@Html.DisplayFor(modelItem => item.MaNv)</td>
+        <td>@Html.DisplayFor(modelItem => item.MaKh)</td>
+        <td>@Html.DisplayFor(modelItem => item.NgayBan)</td>
+        <td>@Html.DisplayFor(modelItem => item.TrangThai)</td>
+        <td>@Html.DisplayFor(modelItem => item.PhuongThucThanhToan)</td>
+        <td>@Html.DisplayFor(modelItem => item.TongTien)</td>
+        <td>@Html.DisplayFor(modelItem => item.GhiChu)</td>
+        <td>
+            <a asp-action="Create" asp-controller="ChiTietHdbs">Add</a> |
+            <a asp-action="Edit" asp-controller="HoaDonBans" asp-route-id="@item.MaHdb">Edit</a> |
+            <a asp-action="Delete" asp-controller="HoaDonBans" asp-route-id="@item.MaHdb">Delete</a> |
+            <a asp-action="ChiTietHDB" asp-controller="ChiTietHdbs" asp-route-maHD="@item.MaHdb">Details</a>
+        </td>
+    </tr>
+}
+

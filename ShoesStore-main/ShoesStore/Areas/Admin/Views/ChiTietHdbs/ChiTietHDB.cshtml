@@ -1,0 +1,15 @@
+﻿@model List<ChiTietHdb>
+<h3>Chi tiết hoá đơn</h3>
+@foreach (var item in Model)
+{
+	<div>
+		<a>Giày: </a>@item.MaGiay
+	</div>
+	<div>
+		<a>Số lượng: </a>@item.SoLuong
+	</div>
+	<div>
+		<a asp-action="XoaCTHDB" asp-controller="ChiTietHdbs" asp-route-maHD="@item.MaHdb" asp-route-maGiay="@item.MaGiay">Delete</a>
+	</div>
+}
+<a asp-action="HDB" asp-controller="Admin">Quay lại</a>

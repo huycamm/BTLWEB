@@ -1,0 +1,125 @@
+﻿
+@{
+    ViewData["Title"] = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="hero-wrap hero-bread" style="background-image: url('../images/bg_6.jpg');">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center fadeInUp ftco-animated">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Checkout</span></p>
+            <h1 class="mb-0 bread">Checkout</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-xl-10 ftco-animate fadeInUp ftco-animated">
+						<form action="#" class="billing-form">
+							<h3 class="mb-4 billing-heading">Billing Details</h3>
+	          	<div class="row align-items-end">
+	          		<div class="col-md-6">
+	                <div class="form-group">
+	                	<label for="firstname">Full Name (<span style="color:red;">*</span>)</label>
+	                  <input type="text" class="form-control" placeholder="Fullname" required>
+	                </div>
+	              </div>
+	              <div class="col-md-6">
+	                <div class="form-group">
+	                	<label for="lastname">Phone Number (<span style="color:red;">*</span>)</label>
+								<input type="text" class="form-control" placeholder="Phone Number" required>
+	                </div>
+                </div>
+					<div class="w-100"></div>
+						<div class="col-md-12">
+		            		<div class="form-group">
+								<label for="streetaddress">Address (<span style="color:red;">*</span>)</label>
+						  <input type="text" class="form-control" placeholder="House number and street name" required>
+						</div>
+		            </div>
+						<div class="w-100"></div>
+	            </div>
+	          </form><!-- END -->
+				<div class="col-md-12" style="margin-top:50px">
+	          		<div class="cart-detail bg-light p-3 p-md-4">
+	          			<h3 class="billing-heading mb-4">Payment Method</h3>
+									<div class="form-group">
+										<div class="col-md-12">
+											<div class="radio">
+												<label><input type="radio" name="optradio" class="mr-2">COD</label>
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="col-md-12">
+											<div class="radio">
+											   <label><input type="radio" name="optradio" class="mr-2"> Direct Bank Tranfer</label>
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="col-md-12">
+											<div class="radio">
+											   <label><input type="radio" name="optradio" class="mr-2"> Paypal</label>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-md-12">
+											<div class="checkbox">
+											   <label><input type="checkbox" value="" class="mr-2"> I have read and accept the terms and conditions</label>
+											</div>
+										</div>
+									</div>
+									<p><a href="#" onclick="placeOrder()" class="btn btn-primary py-3 px-4">Place an order</a></p>
+								</div>
+	          	</div>
+	          </div>
+          </div> <!-- .col-md-8 -->
+        </div>
+      </div>
+    </section>
+
+<script>
+	function placeOrder(){
+		var fullName = $("input[placeholder='Fullname']").val();
+		var phoneNumber = $("input[placeholder='Phone Number']").val();
+		var address = $("input[placeholder='House number and street name']").val();
+
+		if (fullName == null || fullName === undefined || fullName == ""){
+			alert("Nhập tên của bạn");
+			return;
+		}
+		if (phoneNumber == null || phoneNumber === undefined || phoneNumber == "") {
+			alert("Nhập số điện thoại của bạn");
+			return;
+		}
+		if (address == null || address === undefined || address == "") {
+			alert("Nhập địa chỉ của bạn");
+			return;
+		}
+
+		$.ajax({
+			url: '@Url.Action("PlaceAnOrder", "Home")',
+			type: "POST",
+			data: {
+				fullName: fullName,
+				phoneNumber: phoneNumber,
+				address: address
+			},
+			success: function (response) {
+				console.log(response);
+				alert("Đặt hàng phẩm thành công !");
+			},
+			error: function () {
+				alert("Error updating quantity");
+			}
+		});
+	}
+</script>

@@ -1,0 +1,104 @@
+﻿@using ShoesStore.Models.ModelDTOs
+@using ShoesStore.ViewModels
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model List<ChiTietGioHangGiayModel>
+
+<div class="hero-wrap hero-bread" style="background-image: url('../images/bg_6.jpg');">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center fadeInUp ftco-animated">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Cart</span></p>
+            <h1 class="mb-0 bread">My Wishlist</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+@await Html.PartialAsync("_CartDetail", Model)
+
+<script>
+    function updateQuantity(quantity) {
+        // update total when plus or minus quantity
+        var $row = $(event.target).closest("tr");
+        var input = $row.find(".input-number");
+        var oldValue = parseInt(input.val());
+        var newValue = oldValue + quantity;
+
+        if (newValue < 1) {
+            return;
+        }
+
+        input.val(newValue);
+
+        var price = parseFloat($row.find(".price").text().replace("$", "").replace(",", ""));
+        var total = price * newValue;
+        $row.find(".total p").text("$" + total.toLocaleString());
+
+        // count subtotal
+        var subtotal = 0;
+
+        // loop through each row in the table
+        $("#cart-items tr").each(function() {
+            var price = parseFloat($(this).find(".price").text().replace("$", ""));
+            var quantity = parseInt($(this).find(".input-number").val());
+            var total = price * quantity;
+            subtotal += total;
+        });
+
+        // set the subtotal value in the UI
+        $("#subtotal-value").text("$" + subtotal.toFixed(2))
+
+        var name = $row.find(".product-name h3").text().split("-")[0].trim();
+        var size = $row.find(".product-name h3").text().split("-")[1].trim();
+
+        console.log("" + name + size);
+
+        // Make an Ajax call to update the quantity in the server-side cart
+        $.ajax({
+            url: '@Url.Action("UpdateQuantity", "Cart")',
+            type: "POST",
+            data: {
+                shoesName: name,
+                shoesSize: size,
+                quantity: newValue
+            },
+            success: function(response) {
+                console.log(response);
+                $("#cartDetail").html(response);
+            },
+            error: function() {
+                alert("Error updating quantity");
+            }
+        });
+    }
+
+    function removeItem(){
+        var $row = $(event.target).closest("tr");
+        var name = $row.find(".product-name h3").text().split("-")[0].trim();
+        var size = $row.find(".product-name h3").text().split("-")[1].trim();
+
+        console.log("" + name+size);
+
+        $.ajax({
+            url: '@Url.Action("RemoveItem", "Cart")',
+            type: "DELETE",
+            data: {
+                shoesName: name,
+                shoesSize: size,
+            },
+            success: function (response) {
+                console.log(response);
+                $("#cartDetail").html(response);
+                alert("Xóa sản phẩm thành công !");
+            },
+            error: function () {
+                alert("Error updating quantity");
+            }
+        });
+    }
+</script>

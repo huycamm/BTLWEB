@@ -1,0 +1,63 @@
+﻿@using ShoesStore.ViewModels
+@using ShoesStore.Models.ModelDTOs
+@using X.PagedList.Mvc.Core
+@model X.PagedList.IPagedList<GiayDTO>
+
+<div class="col-md-8 col-lg-10 order-md-last" id="productSearch">
+	<div class="row">
+		@foreach(var item in Model){
+        <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex fadeInUp ftco-animated">
+            <div class="product d-flex flex-column">
+                    <a asp-action="Single" asp-controller="Home" asp-route-tenGiay="@item.TenGiay" class="img-prod">
+                <img class="img-fluid" src="@Url.Content("../images/"+item.AnhDaiDien)" alt="Colorlib Template">
+                    <span class="status">@item.PhanTramGiam % Off</span>
+                    <div class="overlay"></div>
+                </a>
+                <div class="text py-3 pb-4 px-3">
+                    <div class="d-flex">
+                        <div class="cat">
+                            <span>@item.TenLoai</span>
+                        </div>
+                        <div class="rating">
+                            <p class="text-right mb-0">
+                                @{
+									double star = 0;
+									for (var i = 1; i <= item.DanhGia; i++)
+									{
+										<a href="#"><span class="ion-ios-star"></span></a>
+										star++;
+									}
+									if (item.DanhGia == 0.5 || item.DanhGia == 1.5 || item.DanhGia == 2.5 || item.DanhGia == 3.5 || item.DanhGia == 4.5)
+									{
+										<a href="#"><span class="ion-ios-star-half"></span></a>
+										star = star + 1;
+									}
+									for (var i = star; i < 5; i++)
+									{
+										<a href="#"><span class="ion-ios-star-outline"></span></a>
+									}
+								}
+                            </p>
+                        </div>
+                    </div>
+                    <h3><a asp-action="Single" asp-controller="Home" asp-route-tenGiay="@item.TenGiay">@item.TenGiay</a></h3>
+                    <div class="pricing">
+                    <p class="price"><del>$@item.GiaGoc.Value.ToString("#,##0") </del><span>$@item.GiaBan.Value.ToString("#,##0")</span></p>
+                    </div>
+                    <p class="bottom-area d-flex px-3">
+                        <a href="#" class="add-to-cart text-center py-2 mr-1" onclick="AddToCart('@UserContext.MaGioHang', '@item.MaGiay')"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
+                        <a href="#" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+	</div>
+    <div class="row mt-5">
+        <div class="col">
+            <div class="block-27 d-flex justify-content-center">
+                @Html.PagedListPager(Model,page=>Url.Action("Shop", new{keyword = ViewBag.keyword, startPrice = ViewBag.startPrice, limitPrice = ViewBag.limitPrice, occasionCheckboxes = ViewBag.occasionCheckboxes, page=page}))
+            </div>
+        </div>
+    </div>
+</div>

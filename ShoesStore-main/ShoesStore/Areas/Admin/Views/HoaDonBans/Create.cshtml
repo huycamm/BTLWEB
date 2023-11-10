@@ -1,0 +1,70 @@
+﻿@model ShoesStore.Models.HoaDonBan
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Thêm mới hoá đơn</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MaHdb" class="control-label">Mã hoá đơn</label>
+                <input asp-for="MaHdb" class="form-control" />
+                <span asp-validation-for="MaHdb" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaNv" class="control-label">Nhân viên</label>
+                <select asp-for="MaNv" class ="form-control" asp-items="ViewBag.MaNv"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaKh" class="control-label">Khách hàng</label>
+                <select asp-for="MaKh" class ="form-control" asp-items="ViewBag.MaKh"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="NgayBan" class="control-label">Ngày bán</label>
+                <input asp-for="NgayBan" class="form-control" />
+                <span asp-validation-for="NgayBan" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TrangThai" class="control-label">Trạng thái</label>
+                <select asp-for="TrangThai" class="form-control">
+                    <option value="0">Đang chuẩn bị hàng</option>
+                    <option value="1">Đang giao hàng</option>
+                    <option value="0">Giao hàng thành công</option>
+                    <option value="1">Hoàn trả hàng</option>
+                </select>
+                <span asp-validation-for="TrangThai" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhuongThucThanhToan" class="control-label">Phương thức thanh toán</label>
+                <select asp-for="PhuongThucThanhToan" class="form-control">
+                    <option value="0">Tiền mặt</option>
+                    <option value="1">Thẻ tín dụng</option>
+                    <option value="3">Quét mã QR</option>
+                </select>
+                <span asp-validation-for="PhuongThucThanhToan" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TongTien" class="control-label">Tổng tiền</label>
+                <input asp-for="TongTien" class="form-control" />
+                <span asp-validation-for="TongTien" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GhiChu" class="control-label">Ghi chú</label>
+                <input asp-for="GhiChu" class="form-control" />
+                <span asp-validation-for="GhiChu" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="margin-top: 40px">
+                <input type="submit" value="Create" class="btn btn-primary"> |
+                <a asp-action="HDB" asp-controller="Admin">Quay lại</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

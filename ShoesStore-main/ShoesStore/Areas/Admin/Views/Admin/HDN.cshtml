@@ -1,0 +1,22 @@
+﻿@model IEnumerable<ShoesStore.Models.HoaDonNhap>
+@{
+    ViewData["Title"] = "HDN";
+    Layout = "_LayoutHDNAdmin";
+}
+<div id="PlaceHolderHere"></div>
+@foreach (var item in Model)
+{
+    <tr>
+        <td class="first">@Html.DisplayFor(modelItem => item.MaHdn)</td>
+        <td>@Html.DisplayFor(modelItem => item.MaNv)</td>
+        <td>@Html.DisplayFor(modelItem => item.MaNcc)</td>
+        <td>@Html.DisplayFor(modelItem => item.NgayNhap)</td>
+        <td>@Html.DisplayFor(modelItem => item.TongTien)</td>
+        <td>
+            <a asp-action="Create" asp-controller="ChiTietHdns">Add</a> |
+            <a asp-action="Edit" asp-controller="HoaDonNhaps" asp-route-id="@item.MaHdn">Edit</a> |
+            <a data-toggle="ajax-modal" data-target="#deleteHDN" asp-action="Delete" asp-controller="HoaDonNhaps" asp-route-id="@item.MaHdn">Delete</a> |
+            <a asp-action="Details" asp-controller="ChiTietHdns" asp-route-id="@item.MaHdn">Details</a>
+        </td>
+    </tr>
+}

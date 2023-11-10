@@ -1,0 +1,81 @@
+﻿@model ShoesStore.Models.NhanVien
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>NhanVien</h4>
+<hr />
+<div class="row">
+    <form style="display:flex;" asp-action="Create">
+        <div class="col-sm-7">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MaNv" class="control-label"></label>
+                <input asp-for="MaNv" class="form-control" />
+                <span asp-validation-for="MaNv" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaiKhoan" class="control-label"></label>
+                <select asp-for="TaiKhoan" class="form-control" asp-items="ViewBag.TaiKhoan"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="GioiTinh" class="control-label"></label>
+                <select asp-for="GioiTinh" class="form-control">
+                    <option value="0">Nam</option>
+                    <option value="1">Nữ</option>
+                </select>
+                <span asp-validation-for="GioiTinh" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HoTenNv" class="control-label"></label>
+                <input asp-for="HoTenNv" class="form-control" />
+                <span asp-validation-for="HoTenNv" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NgaySinh" class="control-label"></label>
+                <input asp-for="NgaySinh" type="date" class="form-control" />
+                <span asp-validation-for="NgaySinh" class="text-danger"></span>
+            </div>
+        </div>
+            <div class="col-sm-7">
+                <div class="form-group">
+                <label asp-for="SoDienThoai" class="control-label"></label>
+                <input asp-for="SoDienThoai" class="form-control" />
+                <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ChucVu" class="control-label"></label>
+                <input asp-for="ChucVu" class="form-control" />
+                <span asp-validation-for="ChucVu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Luong" class="control-label"></label>
+                <input asp-for="Luong" class="form-control" />
+                <span asp-validation-for="Luong" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TinhTrangCongViec" class="control-label"></label>
+                <select asp-for="TinhTrangCongViec" class="form-control">
+                    <option value="0">Đang làm</option>
+                    <option value="1">Đã nghỉ việc</option>
+                </select>
+                <span asp-validation-for="TinhTrangCongViec" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnhDaiDien" class="control-label"></label>
+                <br />
+                <input style="margin-top:11px" asp-for="AnhDaiDien" type="file" />
+            </div>
+            <div class="form-group" style="margin-top: 60px">
+                <input type="submit" value="Create" class="btn btn-primary"> |
+                <a asp-action="Index" asp-controller="Admin">Quay lại</a>
+            </div>
+            </div>
+            
+        </form>
+</div>
+
+

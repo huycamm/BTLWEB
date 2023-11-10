@@ -1,0 +1,39 @@
+﻿@model ShoesStore.Models.ChiTietHdn
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Chi tiết hoá đơn</h1>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Số lượng
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SoLuong)
+        </dd>
+        <dt class="col-sm-2">
+            Khuyễn mãi
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.KhuyenMai)
+        </dd>
+        <dt class="col-sm-2">
+            Mã giày
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MaGiayNavigation.MaGiay)
+        </dd>
+        <dt class="col-sm-2">
+            Mã hoá đơn
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MaHdnNavigation.MaHdn)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-controller="Admin" asp-action="HDN">Quay lại</a>
+</div>
